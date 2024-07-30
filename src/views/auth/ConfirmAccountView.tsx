@@ -23,7 +23,6 @@ export default function ConfirmAccountView() {
     const handleComplete=(token:ConfirmToken['token'])=>mutate({token})
   return (
     <>
-    <p>Prueba</p>
       <h1 className="text-5xl font-black text-white">Confirma tu Cuenta</h1>
       <p className="text-2xl font-light text-white mt-5">
         Ingresa el código que recibiste {''}
