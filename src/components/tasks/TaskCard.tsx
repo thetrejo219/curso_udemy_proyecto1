@@ -9,9 +9,10 @@ import { toast } from "react-toastify"
 
 type TaskCardsProps={
     task:Task
+    canEdit:boolean
 }
 
-export default function TaskCard({task}:TaskCardsProps) {
+export default function TaskCard({task,canEdit}:TaskCardsProps) {
     const navigate = useNavigate()
     const params = useParams()
     const projectId = params.projectId!
@@ -32,6 +33,7 @@ export default function TaskCard({task}:TaskCardsProps) {
             <button
             type="button"
             className="text-xl font-bold text-slate-600 text-left"
+            onClick={()=>navigate(location.pathname + `?viewTask=${task._id}`)}
             >
                 {task.name}
             </button>
@@ -55,7 +57,9 @@ export default function TaskCard({task}:TaskCardsProps) {
                         Ver Tarea
                     </button>
                 </Menu.Item>
-                <Menu.Item>
+                {canEdit && (
+                    <>
+                        <Menu.Item>
                     <button onClick={()=>navigate(location.pathname + `?editTask=${task._id}`)} type='button' className='block px-3 py-1 text-sm leading-6 text-gray-900'>
                         Editar Tarea
                     </button>
@@ -68,7 +72,10 @@ export default function TaskCard({task}:TaskCardsProps) {
                     type='button' className='block px-3 py-1 text-sm leading-6 text-red-500'>
                         Eliminar Tarea
                     </button>
-                </Menu.Item>
+                </Menu.Item>    
+                    </>
+                )}
+                
             </Menu.Items>
         </Transition>
     </Menu>
